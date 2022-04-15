@@ -13,4 +13,4 @@ dependencyResolutionManagement {
 	}
 }
 rootProject.name = "MVVMCleanArchSample"
-include ':app'
+include ':sample'
