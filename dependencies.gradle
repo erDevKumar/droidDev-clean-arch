@@ -1,9 +1,9 @@
 ext {
     //App
     toolsBuildVersion = '7.1.0'
-    kotlinVersion = '1.6.10'
+    kotlinVersion = '1.6.21'
     ktlintVersion = '0.31.0'
-//    detektVersion = '1.0.0-RC14'
+    detektVersion = '1.0.0-RC15'
 //    appSupportVersion = '28.0.0'
 //    appCompatVersion = '1.0.0-beta01'
     contraintLayoutVersion = '1.1.2'
