@@ -1,10 +1,8 @@
 plugins {
 	id 'com.android.application'
 	id 'kotlin-android'
-	id 'kotlin-android-extensions'
 	id 'kotlin-kapt'
 	id 'dagger.hilt.android.plugin'
-	id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -51,22 +49,14 @@ android {
 		sourceCompatibility JavaVersion.VERSION_1_8
 		targetCompatibility JavaVersion.VERSION_1_8
 
-		//bindings
-		dataBinding {
-			enabled = true
-		}
-		viewBinding {
-			enabled = true
-		}
-
-		//extensions
-		androidExtensions {
-			experimental = true
-		}
 
 		//lint
 		lintOptions {
 
+			checkAllWarnings true
+			warningsAsErrors true
+
+			baseline(file("lint-baseline.xml"))
 		}
 	}
 
@@ -76,7 +66,6 @@ android {
 	}
 
 	buildFeatures {
-		viewBinding true
 		dataBinding true
 	}
 }
