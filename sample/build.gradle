@@ -4,6 +4,8 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'com.diffplug.spotless'
+    id "io.gitlab.arturbosch.detekt"
+
 }
 
 android {
@@ -21,6 +23,7 @@ android {
         // Required when setting minSdkVersion to 20 or lower
         multiDexEnabled true
     }
+
 
     buildTypes {
         debug {
@@ -79,6 +82,14 @@ def getLocalProperty(String propertyName) {
     }
     return property
 }
+
+
+task showReport(type:Exec) {
+    shouldRunAfter("detekt")
+    workingDir './build/reports/detekt'
+    commandLine 'cmd', '/c', 'start detekt.html'
+}
+
 
 dependencies {
 

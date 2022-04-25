@@ -11,14 +11,35 @@ buildscript { scriptHandler ->
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 		classpath 'com.google.dagger:hilt-android-gradle-plugin:2.40'
 		classpath 'com.diffplug.spotless:spotless-plugin-gradle:5.15.0'
+		classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.20.0"
 
 	}
+
 }
 
 
 plugins {
-
+	id("io.gitlab.arturbosch.detekt").version("1.20.0")
 }
+
+detekt {
+	toolVersion = "1.20.0"
+	config = files("config/detekt/detekt.yml")
+	buildUponDefaultConfig = true
+}
+
+
+tasks.named("detekt").configure {
+	reports {
+		// Enable/Disable HTML report (default: true)
+		html.required.set(true)
+		html.outputLocation.set(file("build/reports/detekt.html"))
+		// Enable/Disable TXT report (default: true)
+		txt.required.set(true)
+		txt.outputLocation.set(file("build/reports/detekt.txt"))
+	}
+}
+
 
 
 subprojects {
@@ -26,7 +47,6 @@ subprojects {
 		apply from: rootProject.file('repositories.gradle')
 		apply from: rootProject.file('versions.gradle')
 		apply from: rootProject.file('spotless.gradle')
-
 	}
 
 }
