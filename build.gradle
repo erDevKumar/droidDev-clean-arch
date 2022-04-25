@@ -10,6 +10,7 @@ buildscript { scriptHandler ->
 		classpath "com.android.tools.build:gradle:$toolsBuildVersion"
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 		classpath 'com.google.dagger:hilt-android-gradle-plugin:2.40'
+		classpath 'com.diffplug.spotless:spotless-plugin-gradle:5.15.0'
 
 	}
 }
@@ -24,5 +25,8 @@ subprojects {
 	buildscript {
 		apply from: rootProject.file('repositories.gradle')
 		apply from: rootProject.file('versions.gradle')
+		apply from: rootProject.file('spotless.gradle')
+
 	}
+
 }

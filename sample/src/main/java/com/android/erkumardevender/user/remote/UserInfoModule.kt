@@ -14,17 +14,15 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class UserInfoModule {
 
-	@Singleton
-	@Provides
-	fun provideUserApi(retrofit: Retrofit) : ApiService {
-		return retrofit.create(ApiService::class.java)
-	}
+    @Singleton
+    @Provides
+    fun provideUserApi(retrofit: Retrofit): ApiService {
+        return retrofit.create(ApiService::class.java)
+    }
 
-	@Singleton
-	@Provides
-	fun provideUserInfoRepository(loginApi: ApiService) : UserRepository {
-		return UserRepositoryImpl(loginApi)
-	}
-
-
+    @Singleton
+    @Provides
+    fun provideUserInfoRepository(loginApi: ApiService): UserRepository {
+        return UserRepositoryImpl(loginApi)
+    }
 }
