@@ -22,10 +22,18 @@ android {
 
         // Required when setting minSdkVersion to 20 or lower
         multiDexEnabled true
+        unitTests.returnDefaultValues = true
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+            }
+        }
     }
 
 
     buildTypes {
+        testCoverageEnabled true
+
         debug {
             applicationIdSuffix '.debug'
             versionNameSuffix '-DEBUG'
@@ -91,12 +99,26 @@ task showReport(type:Exec) {
 }
 
 sonarqube {
-
-        properties {
-            property "sonar.projectKey", "sample-project"
-        }
+    properties {
+        property "sonar.projectName", "sample-project"
+        property "sonar.projectKey", "sample-project"
+        property "sonar.sources", "src"
+        property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.tests", ["src/test/java"]
+        property "sonar.test.inclusions", "**/*Test*/**"
+        property "sonar.exclusions", '**/.gradle/**,' +
+                "**/androidTest/**," +
+                "**/R.class," +
+                "**/BuildConfig.*," +
+                "**/Manifest*.*," +
+                "**/android/databinding/*," +
+                "**/androidx/databinding/*," +
+                "**/*MapperImpl*.*," +
+                "**/BuildConfig.*," +
+                "**/Manifest*.*," +
+                "**/google-services.json"
     }
-
+}
 
 dependencies {
 
