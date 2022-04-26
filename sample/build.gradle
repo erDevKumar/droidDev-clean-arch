@@ -5,7 +5,7 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'com.diffplug.spotless'
     id "io.gitlab.arturbosch.detekt"
-
+    id 'org.sonarqube'
 }
 
 android {
@@ -90,6 +90,13 @@ task showReport(type:Exec) {
     commandLine 'cmd', '/c', 'start detekt.html'
 }
 
+sonarqube {
+
+        properties {
+            property "sonar.projectKey", "sample-project"
+        }
+    }
+
 
 dependencies {
 
@@ -152,7 +159,5 @@ dependencies {
 
     //desugaring
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
-
-
 
 }
